@@ -25,6 +25,12 @@ const Query = gql`
 		anime(id: ID!): Anime
 		characters_staff(id: ID!): AnimeCharacters
 		news(id: ID!): News
+		pictures(id: ID!): Pictures
+		videos(id: ID!): Videos
+		stats(id: ID!): Stats
+		forum(id: ID!): Forum
+		moreinfo(id: ID!): MoreInfo
+		recommendations(id: ID!): Recommendations
 
 		manga(id: ID!): Manga
 	}

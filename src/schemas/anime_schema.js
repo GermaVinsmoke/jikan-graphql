@@ -42,6 +42,12 @@ const typeDefs = gql`
 
 		characters_staff: AnimeCharacters
 		news: News
+		pictures: Pictures
+		videos: Videos
+		stats: Stats
+		forum: Forum
+		moreinfo: MoreInfo
+		recommendations: Recommendations
 	}
 
 	type AiredType {
@@ -118,6 +124,110 @@ const typeDefs = gql`
 		comments: Int
 		intro: String
 	}
+
+	# Endpoint - /anime/{id}/pictures
+	type Pictures @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		pictures: [Picture]
+	}
+
+	type Picture {
+		large: String
+		small: String
+	}
+
+	# Endpoint - /anime/{id}/videos
+	type Videos @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		promo: [Promo]
+		episodes: [VideoEpisode]
+	}
+
+	type Promo {
+		title: String
+		image_url: String
+		video_url: String
+	}
+
+	type VideoEpisode {
+		title: String
+		episode: String
+		url: String
+		image_url: String
+	}
+
+	# Endpoint - /anime/{id}/stats
+	type Stats @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		watching: Int
+		completed: Int
+		on_hold: Int
+		dropped: Int
+		plan_to_watch: Int
+		total: Int
+
+		# Left as of now Field value can not be Int
+		# scores: Score
+	}
+
+	# Endpoint - /anime/{id}/forum
+	type Forum @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		topics: [Topic]
+	}
+
+	type Topic {
+		topic_id: ID
+		url: String
+		title: String
+		date_posted: String
+		author_name: String
+		author_url: String
+		replies: Int
+		last_post: LastPost
+	}
+
+	type LastPost {
+		url: String
+		author_name: String
+		author_url: String
+		date_posted: String
+	}
+
+	# Endpoint - /anime/{id}/moreinfo
+	type MoreInfo @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		moreinfo: String
+	}
+
+	# Endpoint - /anime/{id}/recommendations
+	type Recommendations @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		recommendations: [Recommendation]
+	}
+
+	type Recommendation {
+		mal_id: ID
+		url: String
+		image_url: String
+		recommendation_url: String
+		title: String
+		recommendation_count: Int
+	}
+
+	# Endpoint - /anime/{id}/episodes/{page_no}
 `;
 
 module.exports = typeDefs;
