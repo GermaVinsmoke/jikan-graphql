@@ -14,6 +14,10 @@ class AnimeAPI extends RESTDataSource {
 		return this.get(`/${mal_id}/characters_staff`);
 	}
 
+	getEpisodes(mal_id, page_no) {
+		return this.get(`/${mal_id}/episodes/${page_no}`);
+	}
+
 	getNews(mal_id) {
 		return this.get(`/${mal_id}/news`);
 	}
@@ -38,8 +42,16 @@ class AnimeAPI extends RESTDataSource {
 		return this.get(`/${mal_id}/moreinfo`);
 	}
 
+	getReviews(mal_id, page_no) {
+		return this.get(`/${mal_id}/reviews/${page_no}`);
+	}
+
 	getRecommendation(mal_id) {
 		return this.get(`/${mal_id}/recommendations`);
+	}
+
+	getUserUpdates(mal_id, page_no) {
+		return this.get(`/${mal_id}/userupdates/${page_no}`);
 	}
 }
 

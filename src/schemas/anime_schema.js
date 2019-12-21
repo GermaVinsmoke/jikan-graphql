@@ -19,7 +19,7 @@ const typeDefs = gql`
 		episodes: Int
 		status: String
 		airing: Boolean
-		aired: AiredType
+		aired: AiredOrPublishedType
 		duration: String
 		rating: String
 		score: Float
@@ -48,27 +48,6 @@ const typeDefs = gql`
 		forum: Forum
 		moreinfo: MoreInfo
 		recommendations: Recommendations
-	}
-
-	type AiredType {
-		from: String
-		to: String
-		string: String
-	}
-
-	type RelatedType {
-		Adaptation: [RelatedSubType]
-		SideStory: [RelatedSubType]
-		Character: [RelatedSubType]
-		Summary: [RelatedSubType]
-		Other: [RelatedSubType]
-	}
-
-	type RelatedSubType {
-		mal_id: ID
-		type: String
-		name: String
-		url: String
 	}
 
 	# Endpoint - /anime/{id}/characters_staff
@@ -228,6 +207,77 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/episodes/{page_no}
+	type Episodes @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		episodes_last_page: Int
+		episodes: [Episode]
+	}
+
+	type Episode {
+		episode_id: Int
+		title: String
+		title_japanese: String
+		title_romanji: String
+		aired: String
+		filler: Boolean
+		recap: Boolean
+		video_url: String
+		forum_url: String
+	}
+
+	# Endpoint - /anime/{id}/reviews/{page_no}
+	type Reviews @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		reviews: [ReviewList]
+	}
+
+	type ReviewList {
+		mal_id: Int
+		url: String
+		helpful_count: Int
+		date: String
+		reviewer: ReviewerDetail
+		content: String
+	}
+
+	type ReviewerDetail {
+		url: String
+		image_url: String
+		username: String
+		episodes_seen: String
+		scores: Score
+	}
+
+	type Score {
+		overall: Int
+		story: Int
+		animation: Int
+		sound: Int
+		character: Int
+		enjoyment: Int
+	}
+
+	# Endpoint - /anime/{id}/episodes/{page_no}
+	type UserUpdates @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		users: [User]
+	}
+
+	type User {
+		username: String
+		url: String
+		image_url: String
+		score: Int
+		status: String
+		episodes_seen: Int
+		date: String
+	}
 `;
 
 module.exports = typeDefs;
