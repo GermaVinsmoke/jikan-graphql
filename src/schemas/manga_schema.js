@@ -1,10 +1,6 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-	# type Query {
-	# 	manga(id: ID!): Manga
-	# }
-
 	type Manga {
 		request_hash: String
 		request_cached: Boolean
