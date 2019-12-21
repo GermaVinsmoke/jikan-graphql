@@ -13,6 +13,36 @@ module.exports = {
 		news: async (root, { id }, { dataSources }) => {
 			const news = await dataSources.animeAPI.getNews(id);
 			return { ...news };
+		},
+
+		pictures: async (root, { id }, { dataSources }) => {
+			const pictures = await dataSources.animeAPI.getPictures(id);
+			return { ...pictures };
+		},
+
+		videos: async (root, { id }, { dataSources }) => {
+			const videos = await dataSources.animeAPI.getVideos(id);
+			return { ...videos };
+		},
+
+		stats: async (root, { id }, { dataSources }) => {
+			const stats = await dataSources.animeAPI.getStats(id);
+			return { ...stats };
+		},
+
+		forum: async (root, { id }, { dataSources }) => {
+			const forum = await dataSources.animeAPI.getForum(id);
+			return { ...forum };
+		},
+
+		moreinfo: async (root, { id }, { dataSources }) => {
+			const moreinfo = await dataSources.animeAPI.getMoreInfo(id);
+			return { ...moreinfo };
+		},
+
+		recommendations: async (root, { id }, { dataSources }) => {
+			const recommendations = await dataSources.animeAPI.getRecommendation(id);
+			return { ...recommendations };
 		}
 	},
 	Anime: {
@@ -25,6 +55,32 @@ module.exports = {
 		news: async (anime, args, { dataSources }) => {
 			const news = await dataSources.animeAPI.getNews(anime.id);
 			return { ...news };
+		},
+		pictures: async (anime, args, { dataSources }) => {
+			const pictures = await dataSources.animeAPI.getPictures(anime.id);
+			return { ...pictures };
+		},
+		videos: async (anime, args, { dataSources }) => {
+			const videos = await dataSources.animeAPI.getVideos(anime.id);
+			return { ...videos };
+		},
+		stats: async (anime, args, { dataSources }) => {
+			const stats = await dataSources.animeAPI.getStats(anime.id);
+			return { ...stats };
+		},
+		forum: async (anime, args, { dataSources }) => {
+			const forum = await dataSources.animeAPI.getForum(anime.id);
+			return { ...forum };
+		},
+		moreinfo: async (anime, args, { dataSources }) => {
+			const moreinfo = await dataSources.animeAPI.getMoreInfo(anime.id);
+			return { ...moreinfo };
+		},
+		recommendations: async (anime, args, { dataSources }) => {
+			const recommendations = await dataSources.animeAPI.getRecommendation(
+				anime.id
+			);
+			return { ...recommendations };
 		}
 	}
 };
