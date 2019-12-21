@@ -10,6 +10,11 @@ module.exports = {
 			return { ...characters_staff };
 		},
 
+		episodes: async (root, { id, page_no }, { dataSources }) => {
+			const episodes = await dataSources.animeAPI.getEpisodes(id, page_no);
+			return { ...episodes };
+		},
+
 		news: async (root, { id }, { dataSources }) => {
 			const news = await dataSources.animeAPI.getNews(id);
 			return { ...news };
@@ -40,9 +45,22 @@ module.exports = {
 			return { ...moreinfo };
 		},
 
+		reviews: async (root, { id, page_no }, { dataSources }) => {
+			const reviews = await dataSources.animeAPI.getReviews(id, page_no);
+			return { ...reviews };
+		},
+
 		recommendations: async (root, { id }, { dataSources }) => {
 			const recommendations = await dataSources.animeAPI.getRecommendation(id);
 			return { ...recommendations };
+		},
+
+		userupdates: async (root, { id, page_no }, { dataSources }) => {
+			const userupdates = await dataSources.animeAPI.getUserUpdates(
+				id,
+				page_no
+			);
+			return { ...userupdates };
 		}
 	},
 	Anime: {
