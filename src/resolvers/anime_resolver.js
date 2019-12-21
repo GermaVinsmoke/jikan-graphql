@@ -8,6 +8,11 @@ module.exports = {
 		characters_staff: async (root, { id }, { dataSources }) => {
 			const characters_staff = await dataSources.animeAPI.getCharacterStaff(id);
 			return { ...characters_staff };
+		},
+
+		news: async (root, { id }, { dataSources }) => {
+			const news = await dataSources.animeAPI.getNews(id);
+			return { ...news };
 		}
 	},
 	Anime: {
@@ -16,6 +21,10 @@ module.exports = {
 				anime.id
 			);
 			return { ...characters_staff };
+		},
+		news: async (anime, args, { dataSources }) => {
+			const news = await dataSources.animeAPI.getNews(anime.id);
+			return { ...news };
 		}
 	}
 };

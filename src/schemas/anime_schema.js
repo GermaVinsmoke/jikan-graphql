@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 	# Endpoint - /anime/{id}
-	type Anime {
+	type Anime @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
@@ -41,6 +41,7 @@ const typeDefs = gql`
 		ending_themes: [String]
 
 		characters_staff: AnimeCharacters
+		news: News
 	}
 
 	type AiredType {
@@ -65,7 +66,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/characters_staff
-	type AnimeCharacters {
+	type AnimeCharacters @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
@@ -96,6 +97,26 @@ const typeDefs = gql`
 		name: String
 		image_url: String
 		positions: [String]
+	}
+
+	# Endpoint - /anime/{id}/news
+	type News @rateLimit(limit: 30, duration: 60) {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		articles: [Article]
+	}
+
+	type Article {
+		url: String
+		title: String
+		date: String
+		author_name: String
+		author_url: String
+		forum_url: String
+		image_url: String
+		comments: Int
+		intro: String
 	}
 `;
 

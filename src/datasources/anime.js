@@ -6,14 +6,16 @@ class AnimeAPI extends RESTDataSource {
 		this.baseURL = 'https://api.jikan.moe/v3/anime';
 	}
 
-	async getAnimeDetail(mal_id) {
-		const response = await this.get(`/${mal_id}`);
-		return response;
+	getAnimeDetail(mal_id) {
+		return this.get(`/${mal_id}`);
 	}
 
-	async getCharacterStaff(mal_id) {
-		const response = await this.get(`/${mal_id}/characters_staff`);
-		return response;
+	getCharacterStaff(mal_id) {
+		return this.get(`/${mal_id}/characters_staff`);
+	}
+
+	getNews(mal_id) {
+		return this.get(`/${mal_id}/news`);
 	}
 }
 
