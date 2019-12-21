@@ -1,4 +1,8 @@
 const { makeExecutableSchema } = require('apollo-server');
+const {
+	createRateLimitTypeDef,
+	createRateLimitDirective
+} = require('graphql-rate-limit-directive');
 const { gql } = require('apollo-server');
 const _ = require('lodash');
 
@@ -20,14 +24,18 @@ const Query = gql`
 	type Query {
 		anime(id: ID!): Anime
 		characters_staff(id: ID!): AnimeCharacters
+		news(id: ID!): News
 
 		manga(id: ID!): Manga
 	}
 `;
 
 const schema = makeExecutableSchema({
-	typeDefs: [Query, Anime, Manga],
-	resolvers: _.merge(anime_resolver, manga_resolver)
+	typeDefs: [createRateLimitTypeDef(), Query, Anime, Manga],
+	resolvers: _.merge(anime_resolver, manga_resolver),
+	schemaDirectives: {
+		rateLimit: createRateLimitDirective()
+	}
 });
 
 module.exports = schema;
