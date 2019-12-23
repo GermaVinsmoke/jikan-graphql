@@ -19,7 +19,7 @@ const typeDefs = gql`
 		episodes: Int
 		status: String
 		airing: Boolean
-		aired: AiredOrPublishedType
+		aired: AiredPublishedType
 		duration: String
 		rating: String
 		score: Float

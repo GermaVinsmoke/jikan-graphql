@@ -20,6 +20,7 @@ const Common = require('./schemas/common_schema');
 
 const anime_resolver = require('./resolvers/anime_resolver');
 const manga_resolver = require('./resolvers/manga_resolver');
+const common_resolver = require('./resolvers/common_resolver');
 
 const Query = gql`
 	type Query {
@@ -42,7 +43,7 @@ const Query = gql`
 
 const schema = makeExecutableSchema({
 	typeDefs: [createRateLimitTypeDef(), Query, Common, Anime, Manga],
-	resolvers: _.merge(anime_resolver, manga_resolver),
+	resolvers: _.merge(common_resolver, anime_resolver, manga_resolver),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
 	}

@@ -13,6 +13,23 @@ const typeDefs = gql`
 		title_synonyms: [String]
 		status: String
 		image_url: String
+		type: String
+		volumes: Int
+		chapters: Int
+		publishing: Boolean
+		published: AiredPublishedType
+		rank: Int
+		score: Float
+		scored_by: Int
+		popularity: Int
+		members: Int
+		favorites: Int
+		synopsis: String
+		background: String
+		related: RelatedType
+		genres: [RelatedSubType]
+		authors: [RelatedSubType]
+		serializations: [RelatedSubType]
 	}
 `;
 
