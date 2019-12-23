@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-	type AiredOrPublishedType {
+	type AiredPublishedType {
 		from: String
 		to: String
 		string: String
@@ -13,6 +13,8 @@ const typeDefs = gql`
 		Character: [RelatedSubType]
 		Summary: [RelatedSubType]
 		Other: [RelatedSubType]
+		AlternativeVersion: [RelatedSubType]
+		SpinOff: [RelatedSubType]
 	}
 
 	type RelatedSubType {

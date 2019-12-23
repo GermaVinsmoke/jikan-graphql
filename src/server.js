@@ -1,5 +1,4 @@
-const { ApolloServer, makeExecutableSchema } = require('apollo-server');
-const _ = require('lodash');
+const { ApolloServer } = require('apollo-server');
 
 const schema = require('./root_query');
 
