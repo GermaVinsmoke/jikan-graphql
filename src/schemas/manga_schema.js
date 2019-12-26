@@ -31,7 +31,7 @@ const typeDefs = gql`
 		authors: [RelatedSubType]
 		serializations: [RelatedSubType]
 
-		characters: MangaCharacters
+		mangacharacters: MangaCharacters
 		news: News
 		pictures: Pictures
 		stats: Stats
@@ -47,7 +47,7 @@ const typeDefs = gql`
 		characters: [MangaCharacter]
 	}
 
-	type MangaCharacter implements Character {
+	type MangaCharacter implements CharacterInterface {
 		mal_id: Int
 		url: String
 		image_url: String

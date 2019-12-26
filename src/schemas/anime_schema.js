@@ -59,7 +59,7 @@ const typeDefs = gql`
 		staff: [Staff]
 	}
 
-	type AnimeCharacter implements Character {
+	type AnimeCharacter implements CharacterInterface {
 		mal_id: Int
 		url: String
 		image_url: String

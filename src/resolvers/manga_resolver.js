@@ -4,7 +4,7 @@ module.exports = {
 			const manga = await dataSources.mangaAPI.getMangaDetail(id);
 			return { ...manga, id };
 		},
-		characters: async (root, { id }, { dataSources }) => {
+		mangacharacters: async (root, { id }, { dataSources }) => {
 			const characters = await dataSources.mangaAPI.getCharacters(id);
 			return { ...characters };
 		},
@@ -45,7 +45,7 @@ module.exports = {
 		}
 	},
 	Manga: {
-		characters: async (manga, { id }, { dataSources }) => {
+		mangacharacters: async (manga, { id }, { dataSources }) => {
 			const characters = await dataSources.mangaAPI.getCharacters(manga.id);
 			return { ...characters };
 		},
