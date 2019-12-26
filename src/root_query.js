@@ -33,11 +33,14 @@ const Query = gql`
 		stats(id: ID!): Stats
 		forum(id: ID!): Forum
 		moreinfo(id: ID!): MoreInfo
-		reviews(id: ID!, page_no: ID!): Reviews
+		animereviews(id: ID!, page_no: ID!): AnimeReviews
 		recommendations(id: ID!): Recommendations
-		userupdates(id: ID!, page_no: ID!): UserUpdates
+		animeuserupdates(id: ID!, page_no: ID!): AnimeUserUpdates
 
 		manga(id: ID!): Manga
+		characters(id: ID!): MangaCharacters
+		mangareviews(id: ID!, page_no: ID!): MangaReviews
+		mangauserupdates(id: ID!, page_no: ID!): MangaUserUpdates
 	}
 `;
 
@@ -46,6 +49,9 @@ const schema = makeExecutableSchema({
 	resolvers: _.merge(common_resolver, anime_resolver, manga_resolver),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
+	},
+	resolverValidationOptions: {
+		requireResolversForResolveType: false
 	}
 });
 
