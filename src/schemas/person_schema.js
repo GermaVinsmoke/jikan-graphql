@@ -19,6 +19,8 @@ const typeDefs = gql`
 		voice_acting_roles: [VoiceActingRoles]
 		anime_staff_positions: [AnimeStaffPositions]
 		published_manga: [PublishedManga]
+
+		pictures: Pictures
 	}
 
 	type VoiceActingRoles {
