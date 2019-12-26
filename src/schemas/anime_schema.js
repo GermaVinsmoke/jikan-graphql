@@ -55,11 +55,11 @@ const typeDefs = gql`
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
-		characters: [Character]
+		characters: [AnimeCharacter]
 		staff: [Staff]
 	}
 
-	type Character {
+	type AnimeCharacter implements Character {
 		mal_id: Int
 		url: String
 		image_url: String
@@ -84,39 +84,6 @@ const typeDefs = gql`
 		positions: [String]
 	}
 
-	# Endpoint - /anime/{id}/news
-	type News @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		articles: [Article]
-	}
-
-	type Article {
-		url: String
-		title: String
-		date: String
-		author_name: String
-		author_url: String
-		forum_url: String
-		image_url: String
-		comments: Int
-		intro: String
-	}
-
-	# Endpoint - /anime/{id}/pictures
-	type Pictures @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		pictures: [Picture]
-	}
-
-	type Picture {
-		large: String
-		small: String
-	}
-
 	# Endpoint - /anime/{id}/videos
 	type Videos @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
@@ -137,73 +104,6 @@ const typeDefs = gql`
 		episode: String
 		url: String
 		image_url: String
-	}
-
-	# Endpoint - /anime/{id}/stats
-	type Stats @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		watching: Int
-		completed: Int
-		on_hold: Int
-		dropped: Int
-		plan_to_watch: Int
-		total: Int
-
-		# Left as of now Field value can not be Int
-		# scores: Score
-	}
-
-	# Endpoint - /anime/{id}/forum
-	type Forum @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		topics: [Topic]
-	}
-
-	type Topic {
-		topic_id: ID
-		url: String
-		title: String
-		date_posted: String
-		author_name: String
-		author_url: String
-		replies: Int
-		last_post: LastPost
-	}
-
-	type LastPost {
-		url: String
-		author_name: String
-		author_url: String
-		date_posted: String
-	}
-
-	# Endpoint - /anime/{id}/moreinfo
-	type MoreInfo @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		moreinfo: String
-	}
-
-	# Endpoint - /anime/{id}/recommendations
-	type Recommendations @rateLimit(limit: 30, duration: 60) {
-		request_hash: String
-		request_cached: Boolean
-		request_cache_expiry: Int
-		recommendations: [Recommendation]
-	}
-
-	type Recommendation {
-		mal_id: ID
-		url: String
-		image_url: String
-		recommendation_url: String
-		title: String
-		recommendation_count: Int
 	}
 
 	# Endpoint - /anime/{id}/episodes/{page_no}
@@ -228,33 +128,35 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/reviews/{page_no}
-	type Reviews @rateLimit(limit: 30, duration: 60) {
+	type AnimeReviews @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
-		reviews: [ReviewList]
+		reviews: [AnimeReviewList]
 	}
 
-	type ReviewList {
+	type AnimeReviewList {
 		mal_id: Int
 		url: String
 		helpful_count: Int
 		date: String
-		reviewer: ReviewerDetail
+		reviewer: AnimeReviewerDetail
 		content: String
 	}
 
-	type ReviewerDetail {
+	type AnimeReviewerDetail {
 		url: String
 		image_url: String
 		username: String
-		episodes_seen: String
-		scores: Score
+		episodes_seen: Int
+		chapters_read: Int
+		scores: AnimeReviewScore
 	}
 
-	type Score {
+	type AnimeReviewScore {
 		overall: Int
 		story: Int
+		art: Int
 		animation: Int
 		sound: Int
 		character: Int
@@ -262,14 +164,14 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/episodes/{page_no}
-	type UserUpdates @rateLimit(limit: 30, duration: 60) {
+	type AnimeUserUpdates @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
-		users: [User]
+		users: [AnimeUser]
 	}
 
-	type User {
+	type AnimeUser {
 		username: String
 		url: String
 		image_url: String

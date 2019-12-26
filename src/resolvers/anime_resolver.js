@@ -45,7 +45,7 @@ module.exports = {
 			return { ...moreinfo };
 		},
 
-		reviews: async (root, { id, page_no }, { dataSources }) => {
+		animereviews: async (root, { id, page_no }, { dataSources }) => {
 			const reviews = await dataSources.animeAPI.getReviews(id, page_no);
 			return { ...reviews };
 		},
@@ -55,7 +55,7 @@ module.exports = {
 			return { ...recommendations };
 		},
 
-		userupdates: async (root, { id, page_no }, { dataSources }) => {
+		animeuserupdates: async (root, { id, page_no }, { dataSources }) => {
 			const userupdates = await dataSources.animeAPI.getUserUpdates(
 				id,
 				page_no
