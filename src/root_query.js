@@ -13,6 +13,7 @@ const _ = require('lodash');
 const Anime = require('./schemas/anime_schema');
 const Manga = require('./schemas/manga_schema');
 const Common = require('./schemas/common_schema');
+const Person = require('./schemas/person_schema');
 
 /*
     Resolvers
@@ -21,6 +22,7 @@ const Common = require('./schemas/common_schema');
 const anime_resolver = require('./resolvers/anime_resolver');
 const manga_resolver = require('./resolvers/manga_resolver');
 const common_resolver = require('./resolvers/common_resolver');
+const person_resolver = require('./resolvers/person_resolver');
 
 const Query = gql`
 	type Query {
@@ -41,12 +43,19 @@ const Query = gql`
 		characters(id: ID!): MangaCharacters
 		mangareviews(id: ID!, page_no: ID!): MangaReviews
 		mangauserupdates(id: ID!, page_no: ID!): MangaUserUpdates
+
+		person(id: ID!): Person
 	}
 `;
 
 const schema = makeExecutableSchema({
-	typeDefs: [createRateLimitTypeDef(), Query, Common, Anime, Manga],
-	resolvers: _.merge(common_resolver, anime_resolver, manga_resolver),
+	typeDefs: [createRateLimitTypeDef(), Query, Common, Anime, Manga, Person],
+	resolvers: _.merge(
+		common_resolver,
+		anime_resolver,
+		manga_resolver,
+		person_resolver
+	),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
 	},
