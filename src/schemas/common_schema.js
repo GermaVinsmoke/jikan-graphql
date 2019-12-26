@@ -32,7 +32,7 @@ const typeDefs = gql`
 	# 	characters: [Character]
 	# }
 
-	interface Character {
+	interface CharacterInterface {
 		mal_id: Int
 		url: String
 		image_url: String

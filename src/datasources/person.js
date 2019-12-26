@@ -10,6 +10,10 @@ class PersonAPI extends RESTDataSource {
 		const response = this.get(`/${mal_id}`);
 		return response;
 	}
+
+	getPictures(mal_id) {
+		return this.get(`/${mal_id}/pictures`);
+	}
 }
 
 module.exports = PersonAPI;
