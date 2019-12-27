@@ -74,8 +74,8 @@ const typeDefs = gql`
 		title: String
 		url: String
 		name_kanji: String
-		animeography: [CharacterDetail]
-		mangaography: [CharacterDetail]
+		animeography: [RelatedSubType]
+		mangaography: [RelatedSubType]
 		favorites: Int
 		image_url: String
 	}
