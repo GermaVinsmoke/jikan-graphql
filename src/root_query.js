@@ -22,6 +22,7 @@ const Top = require('./schemas/top_schema');
 const Genre = require('./schemas/genre_schema');
 const Producer = require('./schemas/producer_schema');
 const Magazine = require('./schemas/magazine_schema');
+const Club = require('./schemas/club_schema');
 
 /*
     Resolvers
@@ -39,6 +40,7 @@ const top_resolver = require('./resolvers/top_resolver');
 const genre_resolver = require('./resolvers/genre_resolver');
 const producer_resolver = require('./resolvers/producer_resolver');
 const magazine_resolver = require('./resolvers/magazine_resolver');
+const club_resolver = require('./resolvers/club_resolver.js');
 
 const Query = gql`
 	type Query {
@@ -82,6 +84,9 @@ const Query = gql`
 		producer(producer_id: ID!, page_no: ID!): Producer
 
 		magazine(magazine_id: ID!, page_no: ID): Magazine
+
+		club(club_id: ID!): Club
+		members(club_id: ID!, page_no: ID): Members
 	}
 `;
 
@@ -100,7 +105,8 @@ const schema = makeExecutableSchema({
 		Top,
 		Genre,
 		Producer,
-		Magazine
+		Magazine,
+		Club
 	],
 	resolvers: _.merge(
 		common_resolver,
@@ -114,7 +120,8 @@ const schema = makeExecutableSchema({
 		top_resolver,
 		genre_resolver,
 		producer_resolver,
-		magazine_resolver
+		magazine_resolver,
+		club_resolver
 	),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
