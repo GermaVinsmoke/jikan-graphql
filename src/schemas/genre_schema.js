@@ -21,6 +21,7 @@ const typeDefs = gql`
 		episodes: Int
 		members: Int
 		genres: [RelatedSubType]
+		source: String
 		producers: [RelatedSubType]
 		score: Float
 		licensors: [String]

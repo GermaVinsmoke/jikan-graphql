@@ -20,6 +20,7 @@ const SeasonDetail = require('./schemas/season_detail_schema');
 const Schedule = require('./schemas/schedule_schema');
 const Top = require('./schemas/top_schema');
 const Genre = require('./schemas/genre_schema');
+const Producer = require('./schemas/producer_schema');
 
 /*
     Resolvers
@@ -35,6 +36,7 @@ const season_detail_resolver = require('./resolvers/season_detail_resolver');
 const schedule_resolver = require('./resolvers/schedule_resolver');
 const top_resolver = require('./resolvers/top_resolver');
 const genre_resolver = require('./resolvers/genre_resolver');
+const producer_resolver = require('./resolvers/producer_resolver');
 
 const Query = gql`
 	type Query {
@@ -74,6 +76,8 @@ const Query = gql`
 
 		genreanime(type: String!, genre_id: ID!, page_no: ID): GenreAnime
 		genremanga(type: String!, genre_id: ID!, page_no: ID): GenreManga
+
+		producer(producer_id: ID!, page_no: ID!): Producer
 	}
 `;
 
@@ -90,7 +94,8 @@ const schema = makeExecutableSchema({
 		SeasonDetail,
 		Schedule,
 		Top,
-		Genre
+		Genre,
+		Producer
 	],
 	resolvers: _.merge(
 		common_resolver,
@@ -102,7 +107,8 @@ const schema = makeExecutableSchema({
 		season_detail_resolver,
 		schedule_resolver,
 		top_resolver,
-		genre_resolver
+		genre_resolver,
+		producer_resolver
 	),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()

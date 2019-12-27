@@ -11,6 +11,7 @@ const SeasonDetailAPI = require('./datasources/season_detail');
 const ScheduleAPI = require('./datasources/schedule');
 const TopAPI = require('./datasources/top');
 const GenreAPI = require('./datasources/genre');
+const ProducerAPI = require('./datasources/producer');
 
 const server = new ApolloServer({
 	schema,
@@ -23,7 +24,8 @@ const server = new ApolloServer({
 		seasonDetailAPI: new SeasonDetailAPI(),
 		scheduleAPI: new ScheduleAPI(),
 		topAPI: new TopAPI(),
-		genreAPI: new GenreAPI()
+		genreAPI: new GenreAPI(),
+		producerAPI: new ProducerAPI()
 	})
 });
 
