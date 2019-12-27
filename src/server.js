@@ -7,6 +7,7 @@ const MangaAPI = require('./datasources/manga');
 const PersonAPI = require('./datasources/person');
 const CharacterAPI = require('./datasources/character');
 const SeasonAPI = require('./datasources/season');
+const SeasonDetailAPI = require('./datasources/season_detail');
 
 const server = new ApolloServer({
 	schema,
@@ -15,7 +16,8 @@ const server = new ApolloServer({
 		mangaAPI: new MangaAPI(),
 		personAPI: new PersonAPI(),
 		characterAPI: new CharacterAPI(),
-		seasonAPI: new SeasonAPI()
+		seasonAPI: new SeasonAPI(),
+		seasonDetailAPI: new SeasonDetailAPI()
 	})
 });
 
