@@ -8,6 +8,7 @@ const PersonAPI = require('./datasources/person');
 const CharacterAPI = require('./datasources/character');
 const SeasonAPI = require('./datasources/season');
 const SeasonDetailAPI = require('./datasources/season_detail');
+const ScheduleAPI = require('./datasources/schedule');
 
 const server = new ApolloServer({
 	schema,
@@ -17,7 +18,8 @@ const server = new ApolloServer({
 		personAPI: new PersonAPI(),
 		characterAPI: new CharacterAPI(),
 		seasonAPI: new SeasonAPI(),
-		seasonDetailAPI: new SeasonDetailAPI()
+		seasonDetailAPI: new SeasonDetailAPI(),
+		scheduleAPI: new ScheduleAPI()
 	})
 });
 
