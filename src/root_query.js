@@ -18,6 +18,7 @@ const Character = require('./schemas/character_schema');
 const Season = require('./schemas/season_schema');
 const SeasonDetail = require('./schemas/season_detail_schema');
 const Schedule = require('./schemas/schedule_schema');
+const Top = require('./schemas/top_schema');
 
 /*
     Resolvers
@@ -31,6 +32,7 @@ const character_resolver = require('./resolvers/character_resolver');
 const season_resolver = require('./resolvers/season_resolver');
 const season_detail_resolver = require('./resolvers/season_detail_resolver');
 const schedule_resolver = require('./resolvers/schedule_resolver');
+const top_resolver = require('./resolvers/top_resolver');
 
 const Query = gql`
 	type Query {
@@ -62,6 +64,11 @@ const Query = gql`
 		seasonlater: Season
 
 		schedule(day: String): Schedule
+
+		topanime(type: String!, page_no: ID, subtype: String): TopAnime
+		topmanga(type: String!, page_no: ID, subtype: String): TopManga
+		topperson(type: String!, page_no: ID): TopPerson
+		topcharacter(type: String!, page_no: ID): TopCharacter
 	}
 `;
 
@@ -76,7 +83,8 @@ const schema = makeExecutableSchema({
 		Character,
 		Season,
 		SeasonDetail,
-		Schedule
+		Schedule,
+		Top
 	],
 	resolvers: _.merge(
 		common_resolver,
@@ -86,7 +94,8 @@ const schema = makeExecutableSchema({
 		character_resolver,
 		season_resolver,
 		season_detail_resolver,
-		schedule_resolver
+		schedule_resolver,
+		top_resolver
 	),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
