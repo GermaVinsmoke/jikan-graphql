@@ -15,6 +15,7 @@ const Manga = require('./schemas/manga_schema');
 const Common = require('./schemas/common_schema');
 const Person = require('./schemas/person_schema');
 const Character = require('./schemas/character_schema');
+const Season = require('./schemas/season_schema');
 
 /*
     Resolvers
@@ -25,6 +26,7 @@ const manga_resolver = require('./resolvers/manga_resolver');
 const common_resolver = require('./resolvers/common_resolver');
 const person_resolver = require('./resolvers/person_resolver');
 const character_resolver = require('./resolvers/character_resolver');
+const season_resolver = require('./resolvers/season_resolver');
 
 const Query = gql`
 	type Query {
@@ -47,7 +49,10 @@ const Query = gql`
 		mangauserupdates(id: ID!, page_no: ID!): MangaUserUpdates
 
 		person(id: ID!): Person
+
 		character(id: ID!): Character
+
+		season(year: Int!, season: String!): Season
 	}
 `;
 
@@ -59,14 +64,16 @@ const schema = makeExecutableSchema({
 		Anime,
 		Manga,
 		Person,
-		Character
+		Character,
+		Season
 	],
 	resolvers: _.merge(
 		common_resolver,
 		anime_resolver,
 		manga_resolver,
 		person_resolver,
-		character_resolver
+		character_resolver,
+		season_resolver
 	),
 	schemaDirectives: {
 		rateLimit: createRateLimitDirective()
