@@ -30,7 +30,10 @@ const server = new ApolloServer({
 		producerAPI: new ProducerAPI(),
 		magazineAPI: new MagazineAPI(),
 		clubAPI: new ClubAPI()
-	})
+	}),
+	engine: {
+		apiKey: process.env.ENGINE_API_KEY
+	}
 });
 
 server.listen().then(({ url }) => {
