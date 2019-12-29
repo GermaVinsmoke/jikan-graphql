@@ -7,6 +7,7 @@ class ProducerAPI extends RESTDataSource {
 	}
 
 	getProducerDetail(producer_id, page_no) {
+		if (page_no === undefined) page_no = '';
 		return this.get(`/${producer_id}/${page_no}`);
 	}
 }
