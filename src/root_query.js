@@ -81,7 +81,7 @@ const Query = gql`
 		genreanime(type: String!, genre_id: ID!, page_no: ID): GenreAnime
 		genremanga(type: String!, genre_id: ID!, page_no: ID): GenreManga
 
-		producer(producer_id: ID!, page_no: ID!): Producer
+		producer(producer_id: ID!, page_no: ID): Producer
 
 		magazine(magazine_id: ID!, page_no: ID): Magazine
 
