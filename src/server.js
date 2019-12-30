@@ -32,8 +32,10 @@ const server = new ApolloServer({
 		clubAPI: new ClubAPI()
 	}),
 	engine: {
-		apiKey: process.env.ENGINE_API_KEY
-	}
+		apiKey: process.env.engine_api_key
+	},
+	playground: true,
+	introspection: true
 });
 
 server.listen().then(({ url }) => {
