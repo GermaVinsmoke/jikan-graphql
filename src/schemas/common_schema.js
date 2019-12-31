@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
+	# Common in both anime and manga basic detail
 	type AiredPublishedType {
 		from: String
 		to: String
@@ -25,13 +26,6 @@ const typeDefs = gql`
 		url: String
 	}
 
-	# interface Characters {
-	# 	request_hash: String
-	# 	request_cached: Boolean
-	# 	request_cache_expiry: Int
-	# 	characters: [Character]
-	# }
-
 	interface CharacterInterface {
 		mal_id: Int
 		url: String
@@ -41,6 +35,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/news
+	# Endpoint - /manga/{id}/news
 	type News @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -61,6 +56,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/pictures
+	# Endpoint - /manga/{id}/pictures
 	type Pictures @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -74,6 +70,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/stats
+	# Endpoint - /manga/{id}/stats
 	type Stats @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -92,6 +89,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/forum
+	# Endpoint - /manga/{id}/forum
 	type Forum @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -118,6 +116,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/moreinfo
+	# Endpoint - /manga/{id}/moreinfo
 	type MoreInfo @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -126,6 +125,7 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/recommendations
+	# Endpoint - /manga/{id}/recommendations
 	type Recommendations @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
@@ -140,6 +140,50 @@ const typeDefs = gql`
 		recommendation_url: String
 		title: String
 		recommendation_count: Int
+	}
+
+	# Review Interface
+	interface Reviews {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+	}
+
+	interface ReviewList {
+		mal_id: Int
+		url: String
+		helpful_count: Int
+		date: String
+		content: String
+	}
+
+	interface ReviewerDetail {
+		url: String
+		image_url: String
+		username: String
+	}
+
+	interface ReviewerScore {
+		overall: Int
+		story: Int
+		character: Int
+		enjoyment: Int
+	}
+
+	# UserUpdate Interface
+	interface UserUpdates {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+	}
+
+	interface User {
+		username: String
+		url: String
+		image_url: String
+		score: Int
+		status: String
+		date: String
 	}
 `;
 
