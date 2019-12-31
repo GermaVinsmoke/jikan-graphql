@@ -128,14 +128,14 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/reviews/{page_no}
-	type AnimeReviews @rateLimit(limit: 30, duration: 60) {
+	type AnimeReviews implements Reviews @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
 		reviews: [AnimeReviewList]
 	}
 
-	type AnimeReviewList {
+	type AnimeReviewList implements ReviewList {
 		mal_id: Int
 		url: String
 		helpful_count: Int
@@ -144,7 +144,7 @@ const typeDefs = gql`
 		content: String
 	}
 
-	type AnimeReviewerDetail {
+	type AnimeReviewerDetail implements ReviewerDetail {
 		url: String
 		image_url: String
 		username: String
@@ -153,10 +153,9 @@ const typeDefs = gql`
 		scores: AnimeReviewScore
 	}
 
-	type AnimeReviewScore {
+	type AnimeReviewScore implements ReviewerScore {
 		overall: Int
 		story: Int
-		art: Int
 		animation: Int
 		sound: Int
 		character: Int
@@ -164,14 +163,15 @@ const typeDefs = gql`
 	}
 
 	# Endpoint - /anime/{id}/episodes/{page_no}
-	type AnimeUserUpdates @rateLimit(limit: 30, duration: 60) {
+	type AnimeUserUpdates implements UserUpdates
+		@rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
 		users: [AnimeUser]
 	}
 
-	type AnimeUser {
+	type AnimeUser implements User {
 		username: String
 		url: String
 		image_url: String
