@@ -27,11 +27,22 @@ const typeDefs = gql`
 	}
 
 	interface CharacterInterface {
-		mal_id: Int
+		mal_id: ID
 		url: String
 		image_url: String
 		name: String
 		role: String
+	}
+
+	# Common in
+	# -Anime /character_staffs
+	# -Character
+	type VoiceActor {
+		mal_id: Int
+		name: String
+		url: String
+		image_url: String
+		language: String
 	}
 
 	# Endpoint - /anime/{id}/news
@@ -184,6 +195,45 @@ const typeDefs = gql`
 		score: Int
 		status: String
 		date: String
+	}
+
+	# Genre Interface
+	interface Genre {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+		item_count: Int
+	}
+
+	interface GenreDetail {
+		mal_id: Int
+		url: String
+		title: String
+		image_url: String
+		synopsis: String
+		type: String
+		members: Int
+		genres: [RelatedSubType]
+		score: Float
+	}
+
+	interface Top {
+		request_hash: String
+		request_cached: Boolean
+		request_cache_expiry: Int
+	}
+
+	interface TopDetail {
+		mal_id: Int
+		rank: Int
+		title: String
+		url: String
+		image_url: String
+		type: String
+		start_date: String
+		end_date: String
+		members: Int
+		score: Float
 	}
 `;
 

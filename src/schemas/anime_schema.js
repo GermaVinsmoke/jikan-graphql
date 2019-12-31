@@ -40,6 +40,8 @@ const typeDefs = gql`
 		opening_themes: [String]
 		ending_themes: [String]
 
+		# Anime requests
+		# More info - https://jikan.docs.apiary.io/#reference/0/anime
 		characters_staff: AnimeCharacters
 		news: News
 		pictures: Pictures
@@ -60,20 +62,12 @@ const typeDefs = gql`
 	}
 
 	type AnimeCharacter implements CharacterInterface {
-		mal_id: Int
+		mal_id: ID
 		url: String
 		image_url: String
 		name: String
 		role: String
 		voice_actors: [VoiceActor]
-	}
-
-	type VoiceActor {
-		mal_id: Int
-		name: String
-		url: String
-		image_url: String
-		language: String
 	}
 
 	type Staff {

@@ -20,6 +20,8 @@ const typeDefs = gql`
 		anime_staff_positions: [AnimeStaffPositions]
 		published_manga: [PublishedManga]
 
+		# Person requests
+		# More info - https://jikan.docs.apiary.io/#reference/0/person
 		pictures: Pictures
 	}
 

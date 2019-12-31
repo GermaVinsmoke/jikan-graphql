@@ -15,25 +15,19 @@ const typeDefs = gql`
 		image_url: String
 		animeography: [CharacterDetail]
 		mangaography: [CharacterDetail]
-		voice_actors: [VoiceActorDetail]
+		voice_actors: [VoiceActor]
 
+		# Character requests
+		# More info - https://jikan.docs.apiary.io/#reference/0/character
 		pictures: Pictures
 	}
 
-	type CharacterDetail {
+	type CharacterDetail implements CharacterInterface {
 		mal_id: ID
 		name: String
 		url: String
 		image_url: String
 		role: String
-	}
-
-	type VoiceActorDetail {
-		mal_id: ID
-		name: String
-		url: String
-		image_url: String
-		language: String
 	}
 `;
 
