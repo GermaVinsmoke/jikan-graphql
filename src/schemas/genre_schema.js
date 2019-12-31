@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-	type GenreAnime @rateLimit(limit: 30, duration: 60) {
+	type GenreAnime implements Genre @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
@@ -10,7 +10,7 @@ const typeDefs = gql`
 		anime: [GenreAnimeDetail]
 	}
 
-	type GenreAnimeDetail {
+	type GenreAnimeDetail implements GenreDetail {
 		mal_id: Int
 		url: String
 		title: String
@@ -29,7 +29,7 @@ const typeDefs = gql`
 		kids: Boolean
 	}
 
-	type GenreManga @rateLimit(limit: 30, duration: 60) {
+	type GenreManga implements Genre @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
@@ -38,7 +38,7 @@ const typeDefs = gql`
 		anime: [GenreMangaDetail]
 	}
 
-	type GenreMangaDetail {
+	type GenreMangaDetail implements GenreDetail {
 		mal_id: Int
 		url: String
 		title: String

@@ -1,14 +1,14 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-	type TopAnime @rateLimit(limit: 30, duration: 60) {
+	type TopAnime implements Top @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
 		top: [TopAnimeDetail]
 	}
 
-	type TopAnimeDetail {
+	type TopAnimeDetail implements TopDetail {
 		mal_id: Int
 		rank: Int
 		title: String
@@ -22,14 +22,14 @@ const typeDefs = gql`
 		score: Float
 	}
 
-	type TopManga @rateLimit(limit: 30, duration: 60) {
+	type TopManga implements Top @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
 		top: [TopMangaDetail]
 	}
 
-	type TopMangaDetail {
+	type TopMangaDetail implements TopDetail {
 		mal_id: Int
 		rank: Int
 		title: String
@@ -43,7 +43,7 @@ const typeDefs = gql`
 		image_url: String
 	}
 
-	type TopPerson @rateLimit(limit: 30, duration: 60) {
+	type TopPerson implements Top @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int
@@ -61,7 +61,7 @@ const typeDefs = gql`
 		birthday: String
 	}
 
-	type TopCharacter @rateLimit(limit: 30, duration: 60) {
+	type TopCharacter implements Top @rateLimit(limit: 30, duration: 60) {
 		request_hash: String
 		request_cached: Boolean
 		request_cache_expiry: Int

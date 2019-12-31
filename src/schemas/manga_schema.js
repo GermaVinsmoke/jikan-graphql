@@ -31,6 +31,8 @@ const typeDefs = gql`
 		authors: [RelatedSubType]
 		serializations: [RelatedSubType]
 
+		# Manga requests
+		# More info - https://jikan.docs.apiary.io/#reference/0/manga
 		mangacharacters: MangaCharacters
 		news: News
 		pictures: Pictures
@@ -48,7 +50,7 @@ const typeDefs = gql`
 	}
 
 	type MangaCharacter implements CharacterInterface {
-		mal_id: Int
+		mal_id: ID
 		url: String
 		image_url: String
 		name: String
