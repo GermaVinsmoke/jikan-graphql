@@ -1,33 +1,60 @@
-version: 2
+language: node_js
+node_js:
+  - 10.15.3
+cache: npm
 
-jobs:
-  build:
-    docker:
-      - image: travisci/node:8
+install:
+  - npm install
 
-    steps:
-      - checkout
+after_install:
+  - run:
+      name: Starting Server
+      command: npm start
+      background: true
 
-      - run: npm install
-      # CircleCI needs global installs to be sudo
+  - run: sleep 5
 
-      - run: sudo npm install --global apollo
+  - run: |
+      if [ "$TRAVIS_BRANCH" = "master" ]; then
+        apollo service:push --tag=master
+      fi
 
-      # Start the GraphQL server.  If a different command is used to
-      # start the server, use it in place of `npm start` here.
-      - run:
-          name: Starting server
-          command: npm start
-          background: true
+deploy:
+  provider: script
+  script: npm run deploy
+  skip-cleanup: true
+  on:
+    branch: master
+# version: 2
 
-      # make sure the server has enough time to start up before running
-      # commands against it
-      - run: sleep 5
+# jobs:
+#   build:
+#     docker:
+#       - image: travisci/node:8
 
-      # When running on the 'master' branch, push the latest version
-      # of the schema to Apollo Graph Manager.
-      - run: |
+#     steps:
+#       - checkout
 
-          if [ $TRAVIS_BRANCH == "master" ]; then
-            apollo service:push --tag=master
-          fi
+#       - run: npm install
+#       # CircleCI needs global installs to be sudo
+
+#       - run: sudo npm install --global apollo
+
+#       # Start the GraphQL server.  If a different command is used to
+#       # start the server, use it in place of `npm start` here.
+#       - run:
+#           name: Starting server
+#           command: npm start
+#           background: true
+
+#       # make sure the server has enough time to start up before running
+#       # commands against it
+#       - run: sleep 5
+
+#       # When running on the 'master' branch, push the latest version
+#       # of the schema to Apollo Graph Manager.
+#       - run: |
+
+#           if [ $TRAVIS_BRANCH == "master" ]; then
+#             apollo service:push --tag=master
+#           fi

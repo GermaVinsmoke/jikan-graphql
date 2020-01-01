@@ -7,7 +7,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node src/server.js",
 		"server": "nodemon src/server.js",
-		"apollo-graph": "apollo service:push"
+		"apollo-graph": "apollo service:push",
+		"deploy": "now --prod"
 	},
 	"keywords": [],
 	"author": "",
