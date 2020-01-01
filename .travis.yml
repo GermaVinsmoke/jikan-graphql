@@ -6,6 +6,8 @@ cache: npm
 install:
   - npm install
 
+script: true
+
 after_install:
   - run:
       name: Starting Server
