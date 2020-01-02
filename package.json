@@ -6,7 +6,9 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node src/server.js",
-		"server": "nodemon src/server.js"
+		"server": "nodemon src/server.js",
+		"apollo-graph": "apollo service:push",
+		"deploy": "now --prod"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,6 +22,7 @@
 		"node-fetch": "^2.6.0"
 	},
 	"devDependencies": {
+		"apollo": "^2.21.2",
 		"nodemon": "^2.0.2"
 	}
 }
