@@ -32,7 +32,7 @@ const server = new ApolloServer({
 		clubAPI: new ClubAPI()
 	}),
 	engine: {
-		apiKey: process.env.engine_api_key
+		apiKey: process.env.ENGINE_API_KEY
 	},
 	playground: true,
 	introspection: true

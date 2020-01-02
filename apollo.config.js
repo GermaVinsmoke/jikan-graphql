@@ -2,7 +2,7 @@
 module.exports = {
 	service: {
 		endpoint: {
-			url: 'http://localhost:4000'
+			url: 'https://jikan-graphql.now.sh/'
 		}
 	}
 };
