@@ -8,7 +8,6 @@ install:
 
 script:
   - npm start
-  - sleep 5
 
 after_script:
   - apollo service:push --tag=master
