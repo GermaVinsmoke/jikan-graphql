@@ -17,7 +17,7 @@ jobs:
       # start the server, use it in place of `npm start` here.
       - run:
           name: Deploying on zeit
-          command: now --prod -t ${NOW_TOKEN} alias deploy
+          command: now -t ${NOW_TOKEN} alias deploy
 
       # make sure the server has enough time to start up before running
       # commands against it
