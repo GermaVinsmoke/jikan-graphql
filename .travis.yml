@@ -6,20 +6,24 @@ cache: npm
 install:
   - npm install
 
-script: true
+script: 
+  - npm start
+  - sleep 5
+  if [ "$TRAVIS_BRANCH" = "master" ]; then
+    apollo service:push --tag=master
+  fi
 
-after_install:
-  - run:
-      name: Starting Server
-      command: npm start
-      background: true
+# after_install:
+#   - run:
+#       name: Starting Server
+#       command: npm start
+#       background: true
 
-  - run: sleep 5
+#   - sleep 5
 
-  - run: |
-      if [ "$TRAVIS_BRANCH" = "master" ]; then
-        apollo service:push --tag=master
-      fi
+#   if [ "$TRAVIS_BRANCH" = "master" ]; then
+#     apollo service:push --tag=master
+#   fi
 
 deploy:
   provider: script
