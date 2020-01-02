@@ -1,7 +1,5 @@
 {
 	"version": 2,
-	"alias": ["jikan-graphql.now.sh"],
-	"forwardNpm": true,
 	"builds": [
 		{
 			"src": "src/server.js",

@@ -11,17 +11,19 @@ jobs:
       - run: npm install
       # CircleCI needs global installs to be sudo
 
-      - run: sudo npm install --global now
+      # - run: sudo npm install --global now
 
-      # Start the GraphQL server.  If a different command is used to
-      # start the server, use it in place of `npm start` here.
-      - run:
-          name: Deploying on zeit
-          command: now --prod -t ${NOW_TOKEN} alias jikan-graphql.now.sh
+      # # Start the GraphQL server.  If a different command is used to
+      # # start the server, use it in place of `npm start` here.
+      # - run:
+      #     name: Deploying on zeit
+      #     commands:
+      #       - now --prod -t ${NOW_TOKEN}
+      #       - now --prod -t ${NOW_TOKEN} alias jikan-graphql.now.sh
 
-      # make sure the server has enough time to start up before running
-      # commands against it
-      - run: sleep 5
+      # # make sure the server has enough time to start up before running
+      # # commands against it
+      # - run: sleep 5
 
       # When running on the 'master' branch, push the latest version
       # of the schema to Apollo Graph Manager.
