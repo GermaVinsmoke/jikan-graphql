@@ -11,13 +11,13 @@ jobs:
       - run: npm install
       # CircleCI needs global installs to be sudo
 
-      - run: sudo npm install --global apollo
+      - run: npm install --global now
 
       # Start the GraphQL server.  If a different command is used to
       # start the server, use it in place of `npm start` here.
       - run:
           name: Deploying on zeit
-          command: npm run deploy
+          command: now --prod -t ${NOW_TOKEN}
 
       # make sure the server has enough time to start up before running
       # commands against it
@@ -28,5 +28,5 @@ jobs:
       - run: |
 
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            apollo service:push --tag=master
+            npm run apollo-graph
           fi
