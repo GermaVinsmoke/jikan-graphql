@@ -11,7 +11,7 @@ jobs:
       - run: npm install
       # CircleCI needs global installs to be sudo
 
-      - run: npm install --global now
+      - run: sudo npm install --global now
 
       # Start the GraphQL server.  If a different command is used to
       # start the server, use it in place of `npm start` here.
