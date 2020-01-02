@@ -1,6 +1,6 @@
 {
 	"version": 2,
-	"alias": ["deploy"],
+	"alias": ["jikan-graphql.now.sh"],
 	"forwardNpm": true,
 	"builds": [
 		{
